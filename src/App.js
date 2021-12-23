@@ -1,24 +1,41 @@
 import logo from './logo.svg';
 import './App.css';
+import Sidebar from './Sidebar';
+import Topbar from './Topbar';
+import Dashboard from './Dashboard';
+import StudentList from './StudentList'
+import AttendanceList from './AttendanceList';
+import AddAttendance from './AddAttendance';
+
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="wrapper">
+      <BrowserRouter>
+        <Sidebar />
+        <div id="content-wrapper" class="d-flex flex-column">
+          <div id="content">
+            <Topbar />
+            <div class="container-fluid">
+              <Routes>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/studentlist" element={<StudentList />} />
+                <Route path="/student/:id" element={<AttendanceList />} />
+                <Route path="/addattendance/:id" element={<AddAttendance/>} />
+
+              </Routes>
+            </div>
+          </div>
+        </div>
+      </BrowserRouter>
     </div>
+
   );
 }
 
